@@ -1,14 +1,15 @@
 package fiap.tds.controller;
 
 import fiap.tds.dto.SmsRequest;
+import fiap.tds.entity.SmsMessage;
+import fiap.tds.repository.SmsRepository;
 import fiap.tds.service.SmsSender;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import java.util.List;
 
 @Path("/sms")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -16,10 +17,12 @@ import jakarta.ws.rs.core.Response;
 public class SmsSenderController {
 
     private final SmsSender smsSender;
+    private final SmsRepository smsRepository;
 
     @Inject
     public SmsSenderController(SmsSender smsSender) {
         this.smsSender = smsSender;
+        this.smsRepository = new SmsRepository();
     }
 
     @POST
@@ -27,6 +30,13 @@ public class SmsSenderController {
         smsSender.sendSms(smsRequest);
         return Response.ok("SMS enviado com sucesso").build();
 
+    }
+
+    @GET
+    @Path("/getAll")
+    public Response getAllSms(){
+        List<SmsMessage> smsMessages = smsRepository.getAll();
+        return Response.ok(smsMessages).build();
     }
 
 }
