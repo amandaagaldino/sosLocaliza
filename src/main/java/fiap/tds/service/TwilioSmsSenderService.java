@@ -9,11 +9,15 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import fiap.tds.config.TwilioConfiguration;
 import fiap.tds.dto.SmsRequest;
+import fiap.tds.entity.SmsMessage;
+import fiap.tds.repository.SmsRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.annotation.PostConstruct;
 
 @ApplicationScoped
 public class TwilioSmsSenderService implements SmsSender{
+
+    private final SmsRepository smsRepository = new SmsRepository();
     public final TwilioConfiguration twilioConfiguration;
 
     public TwilioSmsSenderService(TwilioConfiguration twilioConfiguration) {
@@ -30,12 +34,21 @@ public class TwilioSmsSenderService implements SmsSender{
 
     @Override
     public void sendSms(SmsRequest smsRequest) {
+        var sms = new SmsMessage();
+        String to = "+55" + smsRequest.ddd() + smsRequest.phoneNumber();
+        String from = "De: " + smsRequest.sender() + "\n";
+
+        sms.setSender(smsRequest.sender());
+        sms.setPhoneNumber(to);
+        sms.setMessage(smsRequest.message());
+        sms.setTimestamp(java.time.LocalDateTime.now());
+
         try {
 
-            String to = "+55" + smsRequest.ddd() + smsRequest.phoneNumber();
-            String from = "De: " + smsRequest.sender() + "\n";
-
             if (!isValidPhoneNumber(to)) {
+                sms.setEnviadoComSucesso(String.valueOf(false));
+                sms.setErro("Número inválido");
+                smsRepository.salvar(sms);
                 throw new RuntimeException("Número de telefone inválido: " + to);
             }
 
@@ -45,9 +58,16 @@ public class TwilioSmsSenderService implements SmsSender{
                     from + smsRequest.message()
             ).create();
 
+            sms.setEnviadoComSucesso(String.valueOf(true));
+            sms.setErro(null);
+
         } catch (Exception e) {
+            sms.setEnviadoComSucesso(String.valueOf(false));
+            sms.setErro(e.getMessage());
             e.printStackTrace();
             throw new ApiException("Erro ao enviar SMS: " + e.getMessage());
+        } finally {
+            smsRepository.salvar(sms); //salvar com ou sem erro
         }
     }
 
