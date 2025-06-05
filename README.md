@@ -7,7 +7,7 @@ O **SOS Localiza** é uma plataforma de resposta rápida para situações de ris
 
 A natureza apresenta eventos climáticos extremos, como tempestades intensas, ventos fortes, inundações e deslizamentos. Com o aumento da ocorrência desses eventos, é fundamental criar soluções tecnológicas que auxiliem na prevenção, orientação e resposta rápida em situações de risco.
 
-Este projeto foi desenvolvido como parte do desafio da FIAP para a disciplina *Java*, com integração com um banco de dados Oracle para gerenciar informações sobre eventos climáticos adversos e a API Twilio para o envio de alertas.
+Este projeto foi desenvolvido como parte do desafio da FIAP para a disciplina *Domain Driven Design Using Java*, com integração com um banco de dados Oracle para gerenciar informações sobre eventos climáticos adversos e a API Twilio para o envio de alertas.
 
 ---
 
@@ -15,7 +15,7 @@ Este projeto foi desenvolvido como parte do desafio da FIAP para a disciplina *J
 - Java + Quarkus
 - Twilio (envio de SMS)
 - API Stream do Java
-
+---
 ## 🚨 Funcionalidades
 - Envio de mensagens emergenciais via SMS
 - Orientações preventivas sobre como agir em situações de risco
@@ -31,7 +31,7 @@ Este projeto foi desenvolvido como parte do desafio da FIAP para a disciplina *J
 ## Estrutura do Banco de Dados
 
 - `T_SOS_EVENTOS`: informações e orientações sobre eventos climáticos extremos.
-- `T_SOS_SMS_ENVIADO`: registros de mensagens SMS enviadas.
+- `T_SOS_SMS`: registros de mensagens SMS enviadas.
 
 ---
 ---
