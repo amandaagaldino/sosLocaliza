@@ -34,7 +34,6 @@ Este projeto foi desenvolvido como parte do desafio da FIAP para a disciplina *D
 - `T_SOS_SMS`: registros de mensagens SMS enviadas.
 
 ---
----
 
 ## Considerações Finais
 
