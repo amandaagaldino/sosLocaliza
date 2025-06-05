@@ -1,4 +1,4 @@
-package fiap.tds.controller;
+package fiap.tds.resource;
 
 import fiap.tds.dto.SmsRequest;
 import fiap.tds.entity.SmsMessage;
@@ -14,13 +14,13 @@ import java.util.List;
 @Path("/sms")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class SmsSenderController {
+public class SmsSenderResource {
 
     private final SmsSender smsSender;
     private final SmsRepository smsRepository;
 
     @Inject
-    public SmsSenderController(SmsSender smsSender) {
+    public SmsSenderResource(SmsSender smsSender) {
         this.smsSender = smsSender;
         this.smsRepository = new SmsRepository();
     }
@@ -31,6 +31,13 @@ public class SmsSenderController {
         return Response.ok("SMS enviado com sucesso").build();
 
     }
+// Estamos usando a versão de teste, apenas o número cadastrado a baixo funcionará
+//    {
+//        "sender": "Maria Silva",
+//            "ddd": 11,
+//            "phoneNumber": "966696589",
+//            "message": "Ajuda!"
+//    }
 
     @GET
     @Path("/getAll")
