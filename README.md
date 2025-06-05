@@ -1,62 +1,48 @@
-# soslocaliza
+# 🌐 SOS Localiza
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+O **SOS Localiza** é uma plataforma de resposta rápida para situações de risco climático, como enchentes e deslizamentos. Utilizando geolocalização, mapas interativos e envio de SMS emergencial, o sistema conecta a população em perigo diretamente com órgãos competentes.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+---
+## Contexto
 
-## Running the application in dev mode
+A natureza apresenta eventos climáticos extremos, como tempestades intensas, ventos fortes, inundações e deslizamentos. Com o aumento da ocorrência desses eventos, é fundamental criar soluções tecnológicas que auxiliem na prevenção, orientação e resposta rápida em situações de risco.
 
-You can run your application in dev mode that enables live coding using:
+Este projeto foi desenvolvido como parte do desafio da FIAP para a disciplina *Java*, com integração com um banco de dados Oracle para gerenciar informações sobre eventos climáticos adversos e a API Twilio para o envio de alertas.
 
-```shell script
+---
+
+## 🔧 Tecnologias
+- Java + Quarkus
+- Twilio (envio de SMS)
+- API Stream do Java
+
+## 🚨 Funcionalidades
+- Envio de mensagens emergenciais via SMS
+- Orientações preventivas sobre como agir em situações de risco
+
+## 📦 Executando o projeto
+
+```bash
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+---
 
-## Packaging and running the application
+## Estrutura do Banco de Dados
 
-The application can be packaged using:
+- `T_SOS_EVENTOS`: informações e orientações sobre eventos climáticos extremos.
+- `T_SOS_SMS_ENVIADO`: registros de mensagens SMS enviadas.
 
-```shell script
-./mvnw package
-```
+---
+---
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+## Considerações Finais
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Este sistema foi desenvolvido para atender aos requisitos do desafio FIAP "Eventos Extremos", combinando funcionalidades de banco de dados relacional com integração com a API externas Twilio. O foco é auxiliar na prevenção e resposta rápida em situações de risco, utilizando tecnologia acessível e interativa.
 
-If you want to build an _über-jar_, execute the following command:
+---
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/soslocaliza-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+# Participantes
+<p>➢Amanda Galdino - RM:560066 
+<br>➢Bruno Cantacini - RM:560242
+<br>➢Gustavo Gonçalves - RM:556823
